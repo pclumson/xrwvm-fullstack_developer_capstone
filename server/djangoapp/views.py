@@ -40,21 +40,29 @@ def login_user(request):
     return JsonResponse(data)
 
 # Create a `logout_request` view to handle sign out request
+# def logout_request(request):
+#     # Get the user object based on session id in request
+#     print("Log out the user `{}`".format(request.user.username))
+#     # Logout user in the request
+#     logout(request)
+#     # Redirect user back to homepage
+#     return redirect('djangoapp:index')
+
+# def logout(request):
+#
+#      data = {"userName": "" }
+#
+#      return JsonResponse(data)
+
 def logout_request(request):
     # Get the user object based on session id in request
     print("Log out the user `{}`".format(request.user.username))
     # Logout user in the request
     logout(request)
-    # Redirect user back to homepage
-    return redirect('djangoapp:index')
 
-def logout(request):
+    data = {"userName": username }
 
-     data = {"userName": "" }
-
-     return JsonResponse(data)
-
-
+    return JsonResponse(data)
 
 
 # Create a `registration` view to handle sign up request
