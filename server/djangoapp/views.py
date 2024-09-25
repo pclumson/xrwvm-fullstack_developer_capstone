@@ -1,5 +1,7 @@
 # Uncomment the required imports before adding the code
 
+# Uncomment the required imports before adding the code
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
@@ -136,11 +138,11 @@ def get_cars(request):
     print(count)
     if(count == 0):
         initiate()
-    car_models = CarModel.objects.select_related('car_make')
-    cars = []
-    for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
-    return JsonResponse({"CarModels":cars})
+        car_models = CarModel.objects.select_related('car_make')
+        cars = []
+        for car_model in car_models:
+            cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+        return JsonResponse({"CarModels":cars})
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
@@ -151,7 +153,7 @@ def get_dealerships(request, state="All"):
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/"+state
-    dealerships = get_request(endpoint)
+        dealerships = get_request(endpoint)
     return JsonResponse({"status":200,"dealers":dealerships})
 
 
@@ -167,15 +169,16 @@ def get_dealer_details(request, dealer_id):
 
     if(dealer_id):
 
-    endpoint = "/fetchDealer/"+str(dealer_id)
+        endpoint = "/fetchDealer/"+str(dealer_id)
 
-    dealership = get_request(endpoint)
+        dealership = get_request(endpoint)
 
-    return JsonResponse({"status":200,"dealer":dealership})
+        return JsonResponse({"status":200,"dealer":dealership})
 
     else:
 
-    return JsonResponse({"status":400,"message":"Bad Request"})
+
+        return JsonResponse({"status":400,"message":"Bad Request"})
 
 # Create a `add_review` view to submit a review
 # def add_review(request):
@@ -186,23 +189,23 @@ def get_dealer_reviews(request, dealer_id):
 
     if(dealer_id):
 
-    endpoint = "/fetchReviews/dealer/"+str(dealer_id)
+        endpoint = "/fetchReviews/dealer/"+str(dealer_id)
 
-    reviews = get_request(endpoint)
+        reviews = get_request(endpoint)
 
-    for review_detail in reviews:
+        for review_detail in reviews:
 
-    response = analyze_review_sentiments(review_detail['review'])
+            response = analyze_review_sentiments(review_detail['review'])
 
-    print(response)
+            print(response)
 
-    review_detail['sentiment'] = response['sentiment']
+            review_detail['sentiment'] = response['sentiment']
 
-    return JsonResponse({"status":200,"reviews":reviews})
+        return JsonResponse({"status":200,"reviews":reviews})
 
     else:
 
-    return JsonResponse({"status":400,"message":"Bad Request"})
+        return JsonResponse({"status":400,"message":"Bad Request"})
 
 
 def add_review(request):
@@ -215,4 +218,3 @@ def add_review(request):
             return JsonResponse({"status":401,"message":"Error in posting review"})
     else:
         return JsonResponse({"status":403,"message":"Unauthorized"})
-
