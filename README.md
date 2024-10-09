@@ -1,5 +1,9 @@
 coding-project-template[architecture.pdf](https://github.com/user-attachments/files/17271085/architecture.pdf)
 
+
+![Screenshot from 2024-10-09 16-40-09](https://github.com/user-attachments/assets/f77cc6be-cc8a-4e16-bc9c-3ae108b18960)
+
+
 ![about_us](https://github.com/user-attachments/assets/5006670d-793c-4a5f-8b97-2a4964254db9)
 
 
